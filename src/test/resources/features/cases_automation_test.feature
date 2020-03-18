@@ -1,9 +1,13 @@
 @Cucumber
-Feature: Search Automation Test
+Feature: Creation of an user account
 
 
-  Scenario: search relative results
+  Scenario: Show a required message when an input is not filled out
     Given The User open the Page
-    When The User does a search: rock nacional
-    Then The user would can see results with the word: rock
+    When The User clicks an input and does not enter any value
+    Then The user should see a required message
 
+  Scenario: User can not create an account with empty values
+    Given The User open the Page
+    When The User have empty values
+    Then The user can not create an account
