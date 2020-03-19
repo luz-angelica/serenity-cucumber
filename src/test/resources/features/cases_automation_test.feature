@@ -9,5 +9,5 @@ Feature: Creation of an user account
 
   Scenario: User can not create an account with empty values
     Given The User open the Page
-    When The User have empty values
+    When The User clicks an input and does not enter any value
     Then The user can not create an account

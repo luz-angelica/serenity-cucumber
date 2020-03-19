@@ -10,14 +10,14 @@ import java.util.stream.Collectors;
 public class ResultPage extends PageObject {
 
 
-    @FindBy(className = "error")
+    @FindBy(tagName = "error")
     List<WebElement> errors;
 
     public List<String> getResult(){
         return errors
                 .stream()
                 .map(element -> element.getText())
-            .collect(Collectors.toList());
+                .collect(Collectors.toList());
 
     }
 

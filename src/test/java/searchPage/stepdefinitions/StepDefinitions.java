@@ -8,6 +8,8 @@ import org.hamcrest.Matchers;
 import org.junit.Assert;
 import searchPage.pageObject.PrincipalPage;
 import searchPage.pageObject.ResultPage;
+
+import java.util.ArrayList;
 import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
@@ -35,18 +37,24 @@ public class StepDefinitions {
     @Then("^The user should see a required message$")
     public void the_user_should_see_a_required_message() {
         List<String> results = resultPage.getResult();
-        results.replaceAll(String::toLowerCase); //ponertodo en minuscula
+        results.replaceAll(String::toLowerCase);
         for (int i = 0; i < results.size(); i++) {
-            System.out.println(results.get(i));
-
+            if (results.get(i).equals("")) {
+                results.remove(i);
+            }
         }
-        assertThat(results, Matchers.everyItem(containsString("obligatorio")));
-
+        assertThat(results, Matchers.everyItem(containsString("obligatori")));
     }
+
 
     @Then("^The user can not create an account$")
     public void the_user_can_not_create_an_account() {
-        List<String> results = resultPage.getResult();
-       Assert.assertTrue(results.size() != 0);
+        try{
+        String firstMsg = principalPage.getAlert().getText();
+        Assert.assertFalse(firstMsg.contains("Bienvenido"));
+        } catch (Exception e) {
+            System.out.print("No hace validación");
+        }
+
 }
 }
