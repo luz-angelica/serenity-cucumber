@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @CucumberOptions(
         plugin = {"pretty"},
-        features = "src/test/resources/features"
+        features = "src/test/resources/features/cases_automation_fillUp.feature"
 )
 public class Runner {
 }

@@ -26,7 +26,7 @@ public class PrincipalPage extends PageObject {
          WebElementFacade female;
         @FindBy(id = "id_genero_hombre")
         WebElementFacade male;
-        @FindBy(tagName = "button")
+        @FindBy(xpath = "*//button[@type='submit']")
        WebElementFacade createButton;
 
         public void validation() {
@@ -39,15 +39,18 @@ public class PrincipalPage extends PageObject {
 
         }
 
-    public void fillout(String name, String lastname, String email, String psw,String date) {
+    public void fillout(String name, String lastname, String email, String psw,String date) throws InterruptedException {
         lblName.type(name);
         lblLastName.type(lastname);
         lblEmail.type(email);
         lblPws.type(psw);
         lblDate.type(date);
         male.click();
+        Thread.sleep(2000);
+     }
 
-        createButton.click();
-
-    }
+     public void createAccount() throws InterruptedException {
+         createButton.click();
+         Thread.sleep(10000);
+     }
 }
